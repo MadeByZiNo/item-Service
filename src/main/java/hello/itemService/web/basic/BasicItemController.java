@@ -64,7 +64,7 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @PostMapping("/add")
+    //@PostMapping("/add")
     public String addItemV3(Item item) {
 
         // 클래스명  Item -> item 이런식으로 모델에트리뷰트에 add해줌 ("item",item)
@@ -72,6 +72,16 @@ public class BasicItemController {
         //model.addAttribute("item",item);  // 모델 에트리뷰트에서 자동 추가, 생략가능
 
         return "basic/item";
+    }
+
+    @PostMapping("/add")
+    public String addItemV4(Item item) {
+
+        // 클래스명  Item -> item 이런식으로 모델에트리뷰트에 add해줌 ("item",item)
+        itemRepository.save(item);
+        //model.addAttribute("item",item);  // 모델 에트리뷰트에서 자동 추가, 생략가능
+
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
